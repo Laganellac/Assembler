@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//w3c//dtd html 4.0 transitional//en">
+<!-- saved from url=(0065)https://phobos.ramapo.edu/~vmiller/SoftwareDesign/ASMDuck2200.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta name="generator" content="Microsoft FrontPage 12.0">
+		<title>The VC-3600 Assembler Language</title>
+	    <style type="text/css">
+.auto-style1 {
+ font-size: medium;
+}
+</style>
+	</head>
+
+	<body>
+		<h1>The Duck2200 Assembly Language</h1>
+		<p><br>
+        <font size="4">
+		The following is a summary of the assembly language for the Duck2200.&nbsp; 
+        In class we will discuss the rational for the choices made here.</font></p>
+		<h2>Statement Format:&nbsp;</h2>
+		<p><font size="4"> An assembly language statement consists of from one 
+		to three fields.&nbsp; These are:</font></p>
+		<ul>
+			<li class="auto-style1">Label - used to reference the statement.&nbsp; It is optional.</li>
+			<li class="auto-style1">Operation Code - a symbolic name for the number machine language 
+			op code.</li>
+			<li class="auto-style1">Operand - Used to supply additional information.&nbsp; For a 
+			machine language instruction this a label.</li>
+		</ul>
+		<p><font size="4"> Labels start in column 1, all other fields separated by blanks 
+        and/or tabs.</font></p>
+		<h2>Symbolic Operation Codes:</h2>
+		<p><font size="4">01 ADD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 02 SUB&nbsp;&nbsp;&nbsp;&nbsp; 03 MULT&nbsp;&nbsp;&nbsp;&nbsp; 04 DIV&nbsp;&nbsp;&nbsp;&nbsp; 05 LOAD<br>
+		06 STORE&nbsp;&nbsp;&nbsp; 07 READ&nbsp; 08 WRITE&nbsp;&nbsp;&nbsp;&nbsp; 09 B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 BM<br>
+		11 BZ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 12 BP&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 13 HALT</font></p>
+		<p><font size="4">Symbols: (I.e. labels and operands) are from 1 to 10 characters in length, the first of which is a letter and the remaining may be letters and digits.</font></p>
+		<h2>Addresses:</h2>
+		<p><font size="4">An address my be specified by a label.</font></p>
+		<h2>Assembler Language Instructions:</h2>
+		<p><font size="4">DC - define constant. The constant is a decimal integer placed in the operand field.<br>
+		DS - define storage. The operand specifies the number of words of storage to be set aside.<br>
+		ORG -define origin. The operand specifies the address at which the
+        translation of the next instruction will be generated,<br>
+		END – indicates that there are no additional statements to translate.</font></p>
+		<h2>Comments:&nbsp;</h2>
+		<p><font size="4"> Data after a ";" is a comment. Comments may appear
+        anywhere within an instruction or by themselves.  Blank lines are ignored.</font></p>
+		<h2>Case Sensitivity</h2>
+		<p><font size="4">All symbols will be case sensitive.&nbsp; Operation 
+		codes may be written in upper or lower case or some combination of the 
+		two.&nbsp; So they are case insensitive.</font></p>
+		<h2>Example:&nbsp;</h2>
+		<p><font size="4"> The following is an assembler language program which will read in a number "n" and then compute and print the value of n!.<br>
+		&nbsp;</font></p>
+		<blockquote>
+            <font size="4">
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; org 100<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; read n<br>
+			more&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; load n; This is a
+            comment<br>
+            <br>
+            ;Here is a comment that sit on its own line.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mult fac<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; store fac<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; load n<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sub one<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; store n<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bp more<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; write fac<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; halt<br>
+			n&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ds 100;
+            just to show that you code can handle big areas.<br>
+			fac&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc 1<br>
+			one&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc 1<br>
+            test&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; dc 1234 ;
+            show your program can handle big constants.<br>
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; end</font></blockquote>
+	
+
+
+</body></html>
