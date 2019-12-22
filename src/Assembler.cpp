@@ -62,14 +62,12 @@ void Assembler::PassI( )
         	continue;
         }
 
-#if 1
         // If the instruction has a label, record it and its location in the
         // symbol table.
         if(!instruction.label.empty()) 
         {
             symtab.AddSymbol(instruction.label, loc);
         }
-#endif
 
         // Compute the location of the next instruction.
         loc = Instruction::LocationNextInstruction(instruction, loc);
@@ -160,6 +158,10 @@ void Assembler::PassII()
             else
             {
                 // Insert the memory into the emulator
+                if (emulator.InsertMemory(loc, memory) == false)
+                {
+                    // ERROR Program will not fit in Duck2200's memory
+                } 
             }
             cout << std::setfill('0') << std::setw(5) << loc << "\t" << std::setw(7) << memory 
                 << "\t" << line << endl;
@@ -172,11 +174,22 @@ void Assembler::PassII()
         }
 
         loc = Instruction::LocationNextInstruction(instruction, loc);
-        if (loc > MEM_MAX)
-        {
-            // ERROR This program will not fit in the Duck2200's memory
-        }
     }
+}
+
+void Assembler::RunProgramInEmulator()
+{
+    cout << endl;
+    cout << "Starting emulation..." << endl;
+
+    bool retval = emulator.RunProgram();
+    if (retval)
+    {
+        cout << "Program terminated successfully." << endl;
+        return;
+    }
+    cout << "Program encountered an error during execution." << endl;
+    return;
 }
 
 long Assembler::TranslateInstruction(const Instruction::Instruction &inst)

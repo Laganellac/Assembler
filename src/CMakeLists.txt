@@ -3,6 +3,7 @@ set(
 DASM_SOURCES
     Assem.cpp
     Assembler.cpp
+    Emulator.cpp
     FileAccess.cpp
     Instruction.cpp
     SymbolTable.cpp)

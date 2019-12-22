@@ -38,7 +38,7 @@ private:
 
     FileAccess m_facc;	    // File Access object
     SymbolTable symtab;   // Symbol table object
-    emulator m_emul;        // Emulator object
+    Emulator emulator;        // Emulator object
 };
 
 // End namespace duck

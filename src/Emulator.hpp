@@ -4,26 +4,33 @@
 #ifndef EMULATOR_HPP
 #define EMULATOR_HPP
 
+#include <Duck2200Constants.hpp>
+
 namespace Duck
 {
 
-class emulator 
+class Emulator 
 {
 public:
-    const static int MEMSZ = 100000;	// The size of the memory of the Duck2200.
-    emulator() {
-
-        // memset( m_memory, 0, MEMSZ * sizeof(int) );
-    }
     // Records instructions and data into Duck2200 memory.
-    bool insertMemory( int a_location, int a_contents );
+    bool InsertMemory(int location, long contents) 
+    {
+        try
+        {
+            memory.at(location) = contents;
+        }
+        catch (const std::out_of_range &e)
+        {
+            return false;
+        }
+        return true;
+    };
     
     // Runs the Duck2200 program recorded in memory.
-    bool runProgram( );
+    bool RunProgram();
 
 private:
-    int m_memory[MEMSZ];       // The memory of the Duck2200.
-    int accumulator;			// The accumulator for the Duck2200
+    std::array<long, MEM_MAX> memory;      // The memory of the Duck2200.
 };
 
 // End namespace Duck

@@ -1,3 +1,6 @@
+#ifndef DUCK2200CONSTANTS_HPP
+#define DUCK2200CONSTANTS_HPP
+
 #include <string>
 #include <array>
 #include <unordered_map>
@@ -49,3 +52,5 @@ const size_t SYMBOL_NOT_FOUND = -2;
 // Language standard restrictions
 const size_t MAXIMUM_SYMBOL_LENGTH = 10;
 }
+
+#endif
