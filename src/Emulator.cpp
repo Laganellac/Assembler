@@ -8,9 +8,9 @@ namespace Duck
 
 bool Emulator::RunProgram()
 {
-    register long acc = 0l;
-    register long mp = 0l;
-    register long ip = MEM_START;
+    long acc = 0l;
+    long mp = 0l;
+    long ip = MEM_START;
     bool retval = false;
 
     for (;;)
@@ -34,7 +34,7 @@ bool Emulator::RunProgram()
         else if (opcode_value == OPCODE_VALUES.at(ADD_STATEMENT))
         {
             mp = memory[ip] % MEM_MAX;
-            acc = acc + (memory[mp] % MEM_MAX);
+            acc = acc + memory[mp];
             ip++;
         }
 
@@ -42,7 +42,7 @@ bool Emulator::RunProgram()
         else if (opcode_value == OPCODE_VALUES.at(SUB_STATEMENT))
         {
             mp = memory[ip] % MEM_MAX;
-            acc = acc - (memory[mp] % MEM_MAX);
+            acc = acc - memory[mp];
             ip++;
         }
 
@@ -50,7 +50,7 @@ bool Emulator::RunProgram()
         else if (opcode_value == OPCODE_VALUES.at(MULT_STATEMENT))
         {
             mp = memory[ip] % MEM_MAX;
-            acc = acc * (memory[mp] % MEM_MAX);
+            acc = acc * memory[mp];
             ip++;
         }
 
@@ -58,7 +58,7 @@ bool Emulator::RunProgram()
         else if (opcode_value == OPCODE_VALUES.at(DIV_STATEMENT))
         {
             mp = memory[ip] % MEM_MAX;
-            acc = acc / (memory[mp] % MEM_MAX);
+            acc = acc / memory[mp];
             ip++;
         }
 
@@ -66,7 +66,7 @@ bool Emulator::RunProgram()
         else if (opcode_value == OPCODE_VALUES.at(LOAD_STATEMENT))
         {
             mp = memory[ip] % MEM_MAX;
-            acc = memory[mp] % MEM_MAX;
+            acc = memory[mp];
             ip++;
         }
 
@@ -83,6 +83,7 @@ bool Emulator::RunProgram()
         {
             mp = memory[ip] % MEM_MAX;
             cin >> memory[mp];
+            // cout << "DEBUG: " << memory[mp] << endl;
             ip++;
         }
 
