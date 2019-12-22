@@ -41,5 +41,6 @@ const size_t DEFAULT_MEM_ITER = 1;
 
 // SymbolTable constants
 const size_t MULTIPLY_DEFINED_SYMBOL = -1;
+const size_t SYMBOL_NOT_FOUND = -2;
 
 }

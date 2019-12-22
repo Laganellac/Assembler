@@ -42,4 +42,18 @@ void SymbolTable::DisplaySymbolTable()
     }
 }
 
+bool SymbolTable::LookupSymbol(const std::string &sym, size_t  &loc)
+{
+    bool retval = false;
+    loc = SYMBOL_NOT_FOUND;
+
+    auto item = symtab.find(sym);
+    if (item != symtab.end())
+    {
+        retval = true;
+        loc = item->second;
+    }
+    return retval;
+}
+
 };
