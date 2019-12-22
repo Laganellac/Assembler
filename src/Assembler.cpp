@@ -33,7 +33,7 @@ void Assembler::PassI( )
     for (;;) 
     {
         // Read the next line from the source file.
-        string line; 
+        std::string line; 
         if (!m_facc.GetNextLine(line)) 
         {
             // If there are no more lines, we are missing an end statement.

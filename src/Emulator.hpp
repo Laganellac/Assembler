@@ -4,10 +4,12 @@
 #ifndef EMULATOR_HPP
 #define EMULATOR_HPP
 
-class emulator {
+namespace Duck
+{
 
+class emulator 
+{
 public:
-
     const static int MEMSZ = 100000;	// The size of the memory of the Duck2200.
     emulator() {
 
@@ -20,9 +22,11 @@ public:
     bool runProgram( );
 
 private:
-
     int m_memory[MEMSZ];       // The memory of the Duck2200.
     int accumulator;			// The accumulator for the Duck2200
+};
+
+// End namespace Duck
 };
 
 #endif

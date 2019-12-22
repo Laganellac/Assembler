@@ -5,27 +5,29 @@
 #define FILEACCESS_HPP 
 
 #include <fstream>
-#include <stdlib.h>
-#include <string>
 
-class FileAccess {
+namespace Duck
+{
 
+class FileAccess 
+{
 public:
-
     // Opens the file.
-    FileAccess( int argc, char *argv[] );
+    FileAccess(int argc, char **argv);
 
     // Closes the file.
-    ~FileAccess( );
+    ~FileAccess();
 
     // Get the next line from the source file.
-    bool GetNextLine( string &a_buff );
+    bool GetNextLine(std::string &a_buff);
 
     // Put the file pointer back to the beginning of the file.
-    void rewind( );
+    void rewind();
 
 private:
+    std::ifstream m_sfile;		// Source file object.
+};
 
-    ifstream m_sfile;		// Source file object.
+// End namespace Duck
 };
 #endif

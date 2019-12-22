@@ -5,24 +5,26 @@
 #ifndef ERRORS_HPP
 #define ERRORS_HPP
 
-#include <string>
-#include <vector>
+namespace Duck
+{
 
-class Errors {
-
+class Errors 
+{
 public:
-    
     // Initializes error reports.
-    static void InitErrorReporting( );
+    static void InitErrorReporting();
 
     // Records an error message.
-    static void RecordError( string &a_emsg );
+    static void RecordError(std::string &a_emsg);
 
     // Displays the collected error message.
-    static void DisplayErrors( );
+    static void DisplayErrors();
 
 private:
 
-    static vector<string> m_ErrorMsgs;
+    static std::vector<std::string> m_ErrorMsgs;
+};
+
+// End namespace Duck
 };
 #endif

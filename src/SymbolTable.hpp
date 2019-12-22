@@ -12,11 +12,11 @@ class SymbolTable
 {
 public:
     // Get rid of constructor and destructor if you don't need them.
-    SymbolTable( ) {};
-    ~SymbolTable( ) {};
+    SymbolTable() {};
+    ~SymbolTable() {};
     
     // Add a new symbol to the symbol table.
-    bool AddSymbol(const string &symbol, size_t location);
+    bool AddSymbol(const std::string &symbol, size_t location);
 
     // Display the symbol table.
     void DisplaySymbolTable();

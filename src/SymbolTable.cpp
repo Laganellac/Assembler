@@ -6,6 +6,8 @@
 #include <Duck2200Constants.hpp>
 #include <iomanip>
 
+using std::cout, std::endl;
+
 namespace Duck
 {
 /*
