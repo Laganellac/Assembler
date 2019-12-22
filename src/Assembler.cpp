@@ -71,7 +71,7 @@ void Assembler::PassI( )
 
         // Compute the location of the next instruction.
         loc = Instruction::LocationNextInstruction(instruction, loc);
-        // cout << "Next location: " << loc << endl;
+        cout << "Next location: " << loc << endl;
     }
 
     CompletedPassI = true;
@@ -165,6 +165,11 @@ void Assembler::PassII()
             }
             cout << std::setfill('0') << std::setw(5) << loc << "\t" << std::setw(7) << memory 
                 << "\t" << line << endl;
+        }
+
+        else if (instruction.type == Instruction::InstructionType::Comment)
+        {
+            continue;
         }
 
         else if (instruction.type == Instruction::InstructionType::End)

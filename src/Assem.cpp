@@ -12,6 +12,8 @@ int main(int argc, char **argv)
     // Establish the location of the labels:
     assem.PassI();
 
+    std::cout << std::endl;
+
     // Display the symbol table.
     assem.DisplaySymbolTable();
 
