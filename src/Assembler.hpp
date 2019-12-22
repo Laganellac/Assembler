@@ -5,14 +5,16 @@
 #ifndef ASSEMBLER_HPP
 #define ASSEMBLER_HPP
 
-#include <SymbolTable.hpp>
 #include <FileAccess.hpp>
+#include <Instruction.hpp>
 #include <Emulator.hpp>
+#include <SymbolTable.hpp>
 
 namespace Duck
 {
 
-class Assembler {
+class Assembler 
+{
 public:
     Assembler(int argc, char **argv);
     ~Assembler();
@@ -30,6 +32,9 @@ public:
     void RunProgramInEmulator();
 
 private:
+    long TranslateInstruction(const Instruction::Instruction& inst);
+
+    bool CompletedPassI;
 
     FileAccess m_facc;	    // File Access object
     SymbolTable symtab;   // Symbol table object

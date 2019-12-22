@@ -4,7 +4,6 @@
 
 namespace Duck
 {
-
 // Instruction constants, maybe go in Instruction namespace?
 const char COMMENT_CHAR = ';';
 const std::string DEFINE_CONSTANT_STATEMENT = "DC";
@@ -32,10 +31,13 @@ const std::array<std::string, 13> OPCODES{ADD_STATEMENT, SUB_STATEMENT, MULT_STA
 
 const std::unordered_map<std::string, int> OPCODE_VALUES{{DEFINE_CONSTANT_STATEMENT, 0}, {ADD_STATEMENT, 1},
     {SUB_STATEMENT, 2}, {MULT_STATEMENT, 3}, {DIV_STATEMENT, 4}, {LOAD_STATEMENT, 5}, {STORE_STATEMENT, 6}, {READ_STATEMENT, 7},
-    {WRITE_STATEMENT, 8}, {BRANCH_STATEMENT, 9}, {BRANCH_MINUS_STATEMENT, 10}, {BRANCH_ZERO_STATEMENT, 11}, {BRANCH_ZERO_STATEMENT, 12},
+    {WRITE_STATEMENT, 8}, {BRANCH_STATEMENT, 9}, {BRANCH_MINUS_STATEMENT, 10}, {BRANCH_ZERO_STATEMENT, 11}, {BRANCH_POSITIVE_STATEMENT, 12},
     {HALT_STATEMENT, 13}};
 
+const int ORG_CONSTANT = 9999;
+
 // Emulator constants, maybe put in emulator namespace?
+const size_t MEM_START = 0;
 const size_t MEM_MAX = 100000;
 const size_t DEFAULT_MEM_ITER = 1;
 
@@ -43,4 +45,7 @@ const size_t DEFAULT_MEM_ITER = 1;
 const size_t MULTIPLY_DEFINED_SYMBOL = -1;
 const size_t SYMBOL_NOT_FOUND = -2;
 
+
+// Language standard restrictions
+const size_t MAXIMUM_SYMBOL_LENGTH = 10;
 }

@@ -153,7 +153,7 @@ size_t LocationNextInstruction(const Instruction &inst, size_t current_location)
         size_t operand_value;
         try
         {
-            operand_value = std::get<size_t>(inst.operand);
+            operand_value = std::get<long>(inst.operand);
         }
         catch (std::bad_variant_access &e)
         {

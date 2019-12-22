@@ -22,7 +22,7 @@ public:
     void DisplaySymbolTable();
 
     // Lookup a symbol in the symbol table.
-    bool LookupSymbol(const std::string &symbol, size_t &location);
+    bool LookupSymbol(const std::string &symbol, size_t *location);
 
 private:
     // This is the actual symbol table.  The symbol is the key to the map.

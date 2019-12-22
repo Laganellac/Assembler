@@ -26,7 +26,7 @@ struct Instruction
     InstructionType type;
     std::string label;
     std::string opcode;
-    std::variant<std::string, size_t> operand;
+    std::variant<std::string, long> operand;
 };
 
 Instruction ParseInstruction(const std::string &line);

@@ -10,13 +10,13 @@ int main(int argc, char **argv)
     Duck::Assembler assem(argc, argv);
 
     // Establish the location of the labels:
-    assem.PassI( );
+    assem.PassI();
 
     // Display the symbol table.
     assem.DisplaySymbolTable();
 
     // Output the symbol table and the translation.
-    // assem.PassII( );
+    assem.PassII();
     
     // Run the emulator on the Duck2200 program that was generated in Pass II.
     // assem.RunProgramInEmulator();
