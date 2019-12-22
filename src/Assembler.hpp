@@ -6,7 +6,6 @@
 #define ASSEMBLER_HPP
 
 #include <SymbolTable.hpp>
-#include <Instruction.hpp>
 #include <FileAccess.hpp>
 #include <Emulator.hpp>
 
@@ -32,7 +31,6 @@ private:
 
     FileAccess m_facc;	    // File Access object
     SymbolTable m_symtab;   // Symbol table object
-    Instruction m_inst;	    // Instruction object
     emulator m_emul;        // Emulator object
 };
 #endif

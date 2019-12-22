@@ -7,10 +7,10 @@
 
 int main(int argc, char **argv)
 {
-    // Assembler assem(argc, argv);
+    Assembler assem(argc, argv);
 
     // Establish the location of the labels:
-    // assem.PassI( );
+    assem.PassI( );
 
     // Display the symbol table.
     // assem.DisplaySymbolTable();
