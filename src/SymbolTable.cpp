@@ -3,7 +3,11 @@
 //
 #include <pch.hpp>
 #include <SymbolTable.hpp>
+#include <Duck2200Constants.hpp>
+#include <iomanip>
 
+namespace Duck
+{
 /*
 NAME
 
@@ -18,17 +22,24 @@ DESCRIPTION
     This function will place the symbol "a_symbol" and its location "a_loc"
     in the symbol table.
 */
-void 
-SymbolTable::AddSymbol( string &a_symbol, int a_loc )
+bool SymbolTable::AddSymbol(const std::string &sym, size_t loc)
 {
-    // If the symbol is already in the symbol table, record it as multiply defined.
-    map<string, int>::iterator st;
-    st = m_symbolTable.find( a_symbol );
-    if( st != m_symbolTable.end() ) {
-
-        st->second = multiplyDefinedSymbol;
-        return;
+    auto ret = symtab.insert({sym, loc});
+    if (ret.second == false)
+    {
+        ret.first->second = MULTIPLY_DEFINED_SYMBOL;
     }
-    // Record a the  location in the symbol table.
-    m_symbolTable[a_symbol] = a_loc;
+    return ret.second;
 }
+
+void SymbolTable::DisplaySymbolTable()
+{
+    int i = 0;
+    cout << std::fixed << std::setw(6) << "Sym #" << "|" << std::setw(10) << "Sym Name" << "|" << std::setw(8) << "Sym loc" << endl;
+    for (const auto& item : symtab)
+    {
+        cout << std::right << std::setw(6) << i++ << std::setw(10) << item.first << std::setw(6) << item.second << endl;
+    }
+}
+
+};

@@ -9,8 +9,10 @@
 #include <FileAccess.hpp>
 #include <Emulator.hpp>
 
-class Assembler {
+namespace Duck
+{
 
+class Assembler {
 public:
     Assembler(int argc, char **argv);
     ~Assembler();
@@ -22,7 +24,7 @@ public:
     void PassII();
 
     // Display the symbols in the symbol table.
-    void DisplaySymbolTable() { m_symtab.DisplaySymbolTable(); }
+    void DisplaySymbolTable() { symtab.DisplaySymbolTable(); }
     
     // Run emulator on the translation.
     void RunProgramInEmulator();
@@ -30,7 +32,10 @@ public:
 private:
 
     FileAccess m_facc;	    // File Access object
-    SymbolTable m_symtab;   // Symbol table object
+    SymbolTable symtab;   // Symbol table object
     emulator m_emul;        // Emulator object
+};
+
+// End namespace duck
 };
 #endif

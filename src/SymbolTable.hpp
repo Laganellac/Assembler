@@ -4,29 +4,32 @@
 #ifndef SYMBOLTABLE_HPP
 #define SYMBOLTABLE_HPP
 
-// This class is our symbol table.
-class SymbolTable {
+namespace Duck
+{
 
+// This class is our symbol table.
+class SymbolTable 
+{
 public:
     // Get rid of constructor and destructor if you don't need them.
     SymbolTable( ) {};
     ~SymbolTable( ) {};
     
-    const int multiplyDefinedSymbol = -999;
-
     // Add a new symbol to the symbol table.
-    void AddSymbol( string &a_symbol, int a_loc );
+    bool AddSymbol(const string &symbol, size_t location);
 
     // Display the symbol table.
-    void DisplaySymbolTable( );
+    void DisplaySymbolTable();
 
     // Lookup a symbol in the symbol table.
-    bool LookupSymbol( string &a_symbol, int &a_loc );
+    bool LookupSymbol(const std::string &symbol, size_t &location);
 
 private:
-
     // This is the actual symbol table.  The symbol is the key to the map.
-    map<string, int> m_symbolTable;
+    std::map<std::string, size_t> symtab;
 
+};
+
+// End namespace Duck
 };
 #endif

@@ -8,6 +8,9 @@
 
 using std::cout, std::endl;
 
+namespace Duck
+{
+
 // Constructor for the assembler.  Note: we are passing argc and argv to the file access constructor.
 // See main program.  
 Assembler::Assembler( int argc, char *argv[] )
@@ -56,12 +59,12 @@ void Assembler::PassI( )
         	continue;
         }
 
-#if 0
+#if 1
         // If the instruction has a label, record it and its location in the
         // symbol table.
         if(!instruction.label.empty()) 
         {
-            m_symtab.AddSymbol(instruction.label, loc);
+            symtab.AddSymbol(instruction.label, loc);
         }
 #endif
 
@@ -71,3 +74,5 @@ void Assembler::PassI( )
     }
 }
 
+// End namespace Duck
+};

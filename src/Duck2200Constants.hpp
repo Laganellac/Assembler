@@ -35,7 +35,11 @@ const std::unordered_map<std::string, int> OPCODE_VALUES{{DEFINE_CONSTANT_STATEM
     {WRITE_STATEMENT, 8}, {BRANCH_STATEMENT, 9}, {BRANCH_MINUS_STATEMENT, 10}, {BRANCH_ZERO_STATEMENT, 11}, {BRANCH_ZERO_STATEMENT, 12},
     {HALT_STATEMENT, 13}};
 
+// Emulator constants, maybe put in emulator namespace?
 const size_t MEM_MAX = 100000;
 const size_t DEFAULT_MEM_ITER = 1;
+
+// SymbolTable constants
+const size_t MULTIPLY_DEFINED_SYMBOL = -1;
 
 }
