@@ -8,6 +8,9 @@ namespace Duck
 
 bool Emulator::RunProgram()
 {
+    // Register keyword removed in C++ 17 :(
+    //  (probably not a good idea to use it but these are supposed to 
+    //  be my Duck2200's registers so I thought it'd be fitting)
     long acc = 0l;
     long mp = 0l;
     long ip = MEM_START;
@@ -82,6 +85,7 @@ bool Emulator::RunProgram()
         else if (opcode_value == OPCODE_VALUES.at(READ_STATEMENT))
         {
             mp = memory[ip] % MEM_MAX;
+            cout << "? ";
             cin >> memory[mp];
             // cout << "DEBUG: " << memory[mp] << endl;
             ip++;

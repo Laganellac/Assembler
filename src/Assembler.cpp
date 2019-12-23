@@ -71,7 +71,7 @@ void Assembler::PassI( )
 
         // Compute the location of the next instruction.
         loc = Instruction::LocationNextInstruction(instruction, loc);
-        cout << "Next location: " << loc << endl;
+        // cout << "Next location: " << loc << endl;
     }
 
     CompletedPassI = true;

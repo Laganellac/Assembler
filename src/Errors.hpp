@@ -8,22 +8,13 @@
 namespace Duck
 {
 
-class Errors 
+namespace Errors
 {
-public:
-    // Initializes error reports.
-    static void InitErrorReporting();
 
-    // Records an error message.
-    static void RecordError(std::string &a_emsg);
 
-    // Displays the collected error message.
-    static void DisplayErrors();
 
-private:
-
-    static std::vector<std::string> m_ErrorMsgs;
-};
+// End namespace Errors
+}
 
 // End namespace Duck
 };

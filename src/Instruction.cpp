@@ -126,7 +126,7 @@ Instruction ParseInstruction(const std::string &line)
     // Convert the operand to a number if possible
     try
     {
-        instr.operand = static_cast<size_t>(std::stol(std::get<std::string>(instr.operand)));
+        instr.operand = static_cast<long>(std::stol(std::get<std::string>(instr.operand)));
     }
     catch (const std::exception &e)
     {
