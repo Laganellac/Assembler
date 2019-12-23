@@ -3,7 +3,7 @@
 //
 #include <pch.hpp>
 #include <Assembler.hpp>
-#include <Errors.hpp>
+#include <Logger.hpp>
 #include <Instruction.hpp>
 #include <Duck2200Constants.hpp>
 #include <iomanip>

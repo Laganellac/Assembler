@@ -6,6 +6,7 @@ DASM_SOURCES
     Emulator.cpp
     FileAccess.cpp
     Instruction.cpp
+    Logger.cpp
     SymbolTable.cpp)
 
 # No external dependencies
