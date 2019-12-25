@@ -42,6 +42,7 @@ const int ORG_CONSTANT = 9999;
 // Emulator constants, maybe put in emulator namespace?
 const size_t MEM_START = 0;
 const size_t MEM_MAX = 100000;
+const long CONSTANT_MAX = 9999999;
 const size_t DEFAULT_MEM_ITER = 1;
 
 // SymbolTable constants

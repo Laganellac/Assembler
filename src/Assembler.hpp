@@ -32,9 +32,14 @@ public:
     void RunProgramInEmulator();
 
 private:
+    bool ReportSyntaxErrors(const std::string &line, 
+        const Instruction::Instruction &inst, const size_t line_num);
     long TranslateInstruction(const Instruction::Instruction& inst);
 
+    // Some flags for managing state
     bool CompletedPassI;
+    bool invalidOpcode;
+    bool invalidOperand;
 
     FileAccess m_facc;	    // File Access object
     SymbolTable symtab;   // Symbol table object

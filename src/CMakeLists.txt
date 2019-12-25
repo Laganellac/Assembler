@@ -4,9 +4,9 @@ DASM_SOURCES
     Assem.cpp
     Assembler.cpp
     Emulator.cpp
+    Error.cpp
     FileAccess.cpp
     Instruction.cpp
-    Logger.cpp
     SymbolTable.cpp)
 
 # No external dependencies

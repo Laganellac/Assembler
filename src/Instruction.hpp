@@ -15,6 +15,7 @@ namespace Instruction
 enum class InstructionType
 {
     Invalid,                // Invalid instruction
+    Unknown,                // Unknown format
     MachineLanguage,        // Machine language
     AssemblerInstruction,   // Assembler instruction
     Comment,                // Comment or ignore line
@@ -31,7 +32,7 @@ struct Instruction
 
 Instruction ParseInstruction(const std::string &line);
 
-size_t LocationNextInstruction(const Instruction &inst, size_t current_location);
+size_t LocationNextInstruction(const Instruction &inst, const size_t current_location);
 
 // END OF INSTRUCTION NAMEPSACE
 }

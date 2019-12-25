@@ -11,7 +11,7 @@ namespace Duck
 namespace Instruction
 {
 
-std::string RemoveComment(const std::string &line)
+static std::string RemoveComment(const std::string &line)
 {
     auto loc = line.find(COMMENT_CHAR);
     if (loc == std::string::npos)
@@ -24,7 +24,7 @@ std::string RemoveComment(const std::string &line)
     }
 }
 
-InstructionType CheckInstructionType(const std::string &opcode)
+static InstructionType CheckInstructionType(const std::string &opcode)
 {
     std::string opcode_upper(opcode);
     for (auto &c : opcode_upper)
@@ -81,14 +81,19 @@ Instruction ParseInstruction(const std::string &line)
      * **/
 
     Instruction instr;
+    instr.type = InstructionType::Invalid;
 
     if (!s4.empty())
     {
         // Log a warning about potential missing ';'
+        instr.label = s1;
+        instr.opcode = s2;
+        instr.operand = s3;
+        instr.type = InstructionType::Unknown;
     }
 
     // Has to be Label OpCode Operand
-    if (!s3.empty())
+    else if (!s3.empty())
     {
         instr.label = s1;
         instr.opcode = s2;
@@ -133,11 +138,14 @@ Instruction ParseInstruction(const std::string &line)
         // This is supposed to throw most of the time so ignore it.
     }
 
-    instr.type = CheckInstructionType(instr.opcode);
+    // If the type is not already marked as unknown figure out the type
+    if (instr.type != InstructionType::Unknown)
+        instr.type = CheckInstructionType(instr.opcode);
+
     return instr;
 }
 
-size_t LocationNextInstruction(const Instruction &inst, size_t current_location)
+size_t LocationNextInstruction(const Instruction &inst, const size_t current_location)
 {
     auto new_loc = current_location + DEFAULT_MEM_ITER;
 
