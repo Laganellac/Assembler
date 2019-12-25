@@ -36,11 +36,19 @@ bool SymbolTable::AddSymbol(const std::string &sym, size_t loc)
 
 void SymbolTable::DisplaySymbolTable()
 {
+    cout << "\tNumber" << std::setw(5) << "";
+    cout << "Name" << std::setw(5) << "";
+    cout << "Location" << endl;
+    // cout << endl;
+
     int i = 0;
-    cout << std::fixed << std::setw(6) << "Sym #" << "|" << std::setw(10) << "Sym Name" << "|" << std::setw(8) << "Sym loc" << endl;
     for (const auto& item : symtab)
     {
-        cout << std::right << std::setw(6) << i++ << std::setw(10) << item.first << std::setw(6) << item.second << endl;
+        cout << '\t';
+        cout << std::right << std::setw(6) << i++;
+        cout << std::right << std::setw(12) << item.first;
+        cout << std::right << std::setw(8) << item.second;
+        cout << endl;
     }
 }
 

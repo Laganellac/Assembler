@@ -13,6 +13,8 @@ namespace Error
 
 void DisplayErrors(const size_t line_num = 0);
 
+size_t GetNumErrors();
+
 void RecordError(const size_t line_num, const std::string &&e);
 
 // void ResetErrors();

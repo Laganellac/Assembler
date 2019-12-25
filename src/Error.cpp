@@ -19,7 +19,7 @@ void DisplayErrors(const size_t line_num)
     {
         for (const auto &error : errors)
         {
-            cout << "ERROR: " << error.second << endl;
+            cout << error.first << " - ERROR: " << error.second << endl;
         }
     }
     else
@@ -30,6 +30,11 @@ void DisplayErrors(const size_t line_num)
             cout << "ERROR: " << itr->second << endl;
         }
     }
+}
+
+size_t GetNumErrors()
+{
+    return errors.size();
 }
 
 void RecordError(const size_t line_num, const std::string &&e)

@@ -26,7 +26,7 @@ public:
     void PassII();
 
     // Display the symbols in the symbol table.
-    void DisplaySymbolTable() { symtab.DisplaySymbolTable(); }
+    void DisplaySymbolTable();
     
     // Run emulator on the translation.
     void RunProgramInEmulator();
@@ -37,7 +37,7 @@ private:
     long TranslateInstruction(const Instruction::Instruction& inst);
 
     // Some flags for managing state
-    bool CompletedPassI;
+    bool completedPassI;
     bool invalidOpcode;
     bool invalidOperand;
 

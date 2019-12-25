@@ -16,7 +16,7 @@ namespace Duck
 // Constructor for the assembler.  Note: we are passing argc and argv to the file access constructor.
 // See main program.  
 Assembler::Assembler(int argc, char **argv)
-: m_facc( argc, argv ), CompletedPassI(false), invalidOpcode(false), invalidOperand(false)
+: m_facc( argc, argv ), completedPassI(false), invalidOpcode(false), invalidOperand(false)
 {
     // Nothing else to do here at this point.
 }
@@ -74,16 +74,19 @@ void Assembler::PassI()
         // cout << "Next location: " << loc << endl;
     }
 
-    CompletedPassI = true;
+    completedPassI = true;
     return;
 }
 
 void Assembler::PassII()
 {
-    if (!CompletedPassI)
+    if (!completedPassI)
     {
         throw std::runtime_error("Attempted to call PassII on an Assembler object that has not called PassI");
     }
+
+    cout << "Starting translation..." << endl;
+    cout << endl;
 
     m_facc.rewind();
     auto loc = MEM_START;
@@ -124,6 +127,8 @@ files contain an END statement on the last line."));
             Error::DisplayErrors(line_num);
             continue;
         }
+        else if (instruction.type == Instruction::InstructionType::Comment)
+            continue;
         else if (instruction.type == Instruction::InstructionType::End)
             is_end = true;
 
@@ -163,21 +168,45 @@ files contain an END statement on the last line."));
 
         loc = Instruction::LocationNextInstruction(instruction, loc);
     }
+
+    cout << endl;
+    cout << "Translation complete, " << Error::GetNumErrors() << " errors found." << endl;
+    cout << endl;
+    cout << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+}
+
+void Assembler::DisplaySymbolTable()
+{
+    if (completedPassI)
+    {
+        cout << "PassI complete, here is the resulting symbol table:" << endl;
+        cout << endl;
+
+        symtab.DisplaySymbolTable();
+        cout << endl;
+        cout << "-----------------------------------------------------------------------------------------------------------------------------" << endl;
+    }
 }
 
 void Assembler::RunProgramInEmulator()
 {
-    cout << endl;
-    cout << "Starting emulation..." << endl;
-
-    bool retval = emulator.RunProgram();
-    if (retval)
+    if (Error::GetNumErrors())
     {
-        cout << "Program terminated successfully." << endl;
+        cout << "There were errors found while assembling, cannot begin emulation. " << endl;
+        cout << "Check translation output above to find errors." << endl;
+        Error::DisplayErrors();
         return;
     }
-    cout << "Program encountered an error during execution." << endl;
-    return;
+
+    cout << "Starting emulation..." << endl;
+    cout << endl;
+
+    bool retval = emulator.RunProgram();
+    cout << endl;
+    if (retval)
+        cout << "Program terminated successfully." << endl;
+    else
+        cout << "Program encountered an error during execution." << endl;
 }
 
 bool Assembler::ReportSyntaxErrors(const std::string &line, 
@@ -216,7 +245,8 @@ bool Assembler::ReportSyntaxErrors(const std::string &line,
 
         if (!operand.empty())
         {
-            if (opcode_upper == HALT_STATEMENT)
+            if (opcode_upper == HALT_STATEMENT
+                || opcode_upper == END_STATEMENT)
             {
                 Error::RecordError(line_num, std::string("Invalid operand, OpCode " + inst.opcode + " does not take an operand."));
                 retval = invalidOperand = true;
@@ -252,7 +282,8 @@ bool Assembler::ReportSyntaxErrors(const std::string &line,
                 retval = invalidOperand = true;
             }
         }
-        else if (opcode_upper != HALT_STATEMENT)
+        else if (opcode_upper != HALT_STATEMENT
+                && opcode_upper != END_STATEMENT)
         {
             Error::RecordError(line_num, std::string("Missing operand, OpCode " + inst.opcode + " requires an operand."));
             retval = invalidOperand = true;
@@ -269,7 +300,8 @@ bool Assembler::ReportSyntaxErrors(const std::string &line,
             Error::RecordError(line_num, std::string("Invalid operand, " + inst.opcode + " expects a symbolic operand."));
             retval = invalidOperand = true;
         }
-        else if (opcode_upper == HALT_STATEMENT)
+        else if (opcode_upper == HALT_STATEMENT
+                || opcode_upper == END_STATEMENT)
         {
             Error::RecordError(line_num, std::string("Invalid operand, OpCode " + inst.opcode + " does not take an operand."));
             retval = invalidOperand = true;
