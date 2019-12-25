@@ -3,17 +3,11 @@ set(
 DASM_SOURCES
     Assem.cpp
     Assembler.cpp
+    Emulator.cpp
+    Error.cpp
     FileAccess.cpp
+    Instruction.cpp
     SymbolTable.cpp)
-
-set(
-DASM_HEADERS
-    Assembler.hpp
-    Emulator.hpp
-    Errors.hpp
-    FileAccess.hpp
-    Instruction.hpp
-    SymbolTable.hpp)
 
 # No external dependencies
 
@@ -26,6 +20,10 @@ PRIVATE
 target_precompile_headers(dasm
 PRIVATE
     pch.hpp)
+
+target_compile_features(dasm 
+PRIVATE
+    cxx_std_17) # std::variant
 
 set_target_properties(dasm
 PROPERTIES

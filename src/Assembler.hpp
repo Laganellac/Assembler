@@ -5,13 +5,16 @@
 #ifndef ASSEMBLER_HPP
 #define ASSEMBLER_HPP
 
-#include <SymbolTable.hpp>
-#include <Instruction.hpp>
 #include <FileAccess.hpp>
+#include <Instruction.hpp>
 #include <Emulator.hpp>
+#include <SymbolTable.hpp>
 
-class Assembler {
+namespace Duck
+{
 
+class Assembler 
+{
 public:
     Assembler(int argc, char **argv);
     ~Assembler();
@@ -23,16 +26,26 @@ public:
     void PassII();
 
     // Display the symbols in the symbol table.
-    void DisplaySymbolTable() { m_symtab.DisplaySymbolTable(); }
+    void DisplaySymbolTable();
     
     // Run emulator on the translation.
     void RunProgramInEmulator();
 
 private:
+    bool ReportSyntaxErrors(const std::string &line, 
+        const Instruction::Instruction &inst, const size_t line_num);
+    long TranslateInstruction(const Instruction::Instruction& inst);
+
+    // Some flags for managing state
+    bool completedPassI;
+    bool invalidOpcode;
+    bool invalidOperand;
 
     FileAccess m_facc;	    // File Access object
-    SymbolTable m_symtab;   // Symbol table object
-    Instruction m_inst;	    // Instruction object
-    emulator m_emul;        // Emulator object
+    SymbolTable symtab;   // Symbol table object
+    Emulator emulator;        // Emulator object
+};
+
+// End namespace duck
 };
 #endif

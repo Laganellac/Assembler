@@ -7,19 +7,21 @@
 
 int main(int argc, char **argv)
 {
-    // Assembler assem(argc, argv);
+    Duck::Assembler assem(argc, argv);
 
     // Establish the location of the labels:
-    // assem.PassI( );
+    assem.PassI();
+
+    std::cout << std::endl;
 
     // Display the symbol table.
-    // assem.DisplaySymbolTable();
+    assem.DisplaySymbolTable();
 
     // Output the symbol table and the translation.
-    // assem.PassII( );
+    assem.PassII();
     
     // Run the emulator on the Duck2200 program that was generated in Pass II.
-    // assem.RunProgramInEmulator();
+    assem.RunProgramInEmulator();
    
     // Terminate indicating all is well.  If there is an unrecoverable error, the 
     // program will terminate at the point that it occurred with an exit(1) call.

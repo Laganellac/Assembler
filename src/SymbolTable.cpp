@@ -3,7 +3,13 @@
 //
 #include <pch.hpp>
 #include <SymbolTable.hpp>
+#include <Duck2200Constants.hpp>
+#include <iomanip>
 
+using std::cout, std::endl;
+
+namespace Duck
+{
 /*
 NAME
 
@@ -18,17 +24,46 @@ DESCRIPTION
     This function will place the symbol "a_symbol" and its location "a_loc"
     in the symbol table.
 */
-void 
-SymbolTable::AddSymbol( string &a_symbol, int a_loc )
+bool SymbolTable::AddSymbol(const std::string &sym, size_t loc)
 {
-    // If the symbol is already in the symbol table, record it as multiply defined.
-    map<string, int>::iterator st;
-    st = m_symbolTable.find( a_symbol );
-    if( st != m_symbolTable.end() ) {
-
-        st->second = multiplyDefinedSymbol;
-        return;
+    auto ret = symtab.insert({sym, loc});
+    if (ret.second == false)
+    {
+        ret.first->second = MULTIPLY_DEFINED_SYMBOL;
     }
-    // Record a the  location in the symbol table.
-    m_symbolTable[a_symbol] = a_loc;
+    return ret.second;
 }
+
+void SymbolTable::DisplaySymbolTable()
+{
+    cout << "\tNumber" << std::setw(5) << "";
+    cout << "Name" << std::setw(5) << "";
+    cout << "Location" << endl;
+    // cout << endl;
+
+    int i = 0;
+    for (const auto& item : symtab)
+    {
+        cout << '\t';
+        cout << std::right << std::setw(6) << i++;
+        cout << std::right << std::setw(12) << item.first;
+        cout << std::right << std::setw(8) << item.second;
+        cout << endl;
+    }
+}
+
+bool SymbolTable::LookupSymbol(const std::string &sym, size_t *loc)
+{
+    bool retval = false;
+    *loc = SYMBOL_NOT_FOUND;
+
+    auto item = symtab.find(sym);
+    if (item != symtab.end())
+    {
+        retval = true;
+        *loc = item->second;
+    }
+    return retval;
+}
+
+};

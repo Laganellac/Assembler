@@ -5,4 +5,7 @@ project(Duck2200-Assembler
 VERSION 0.1
 LANGUAGES CXX)
 
+option(CMAKE_BUILD_TYPE "The type of build" "DEBUG")
+option(CMAKE_UNITY_BUILD "" OFF)
+
 add_subdirectory(src)

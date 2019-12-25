@@ -3,10 +3,10 @@
 #define PCH_HPP
 
 #include <iostream>
-#include <stdlib.h>
+#include <vector>
 #include <string>
+#include <array>
 #include <map>
-
-using namespace std;
+#include <unordered_map>
 
 #endif
