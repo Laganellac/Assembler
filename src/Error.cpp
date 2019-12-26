@@ -1,6 +1,5 @@
 #include "pch.hpp"
 #include <Error.hpp>
-#include <sstream>
 
 using std::cout, std::endl;
 
@@ -37,7 +36,7 @@ size_t GetNumErrors()
     return errors.size();
 }
 
-void RecordError(const size_t line_num, const std::string &&e)
+void RecordError(const size_t line_num, std::string &&e)
 {
     errors.insert({line_num, e});
 }
