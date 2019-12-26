@@ -2,7 +2,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(Duck2200-Assembler 
-VERSION 0.1
+VERSION 1.0
 LANGUAGES CXX)
 
 option(CMAKE_BUILD_TYPE "The type of build" "DEBUG")
